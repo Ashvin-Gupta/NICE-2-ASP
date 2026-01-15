@@ -1,0 +1,30 @@
+experiment:
+  name: "lung_cancer_guidelines"
+  output_dir: "src/output_files/CLAUDE"
+  model: "claude-opus-4-1-20250805"
+  family: "claude"
+  temperature: 0.0
+  version: D2K-Pipeline # No-Pipeline, In-Context, D2K-Pipeline
+  cancer_type: "lung cancer"
+  
+  # Pipeline execution mode: D2K-only, K2P-only, D2K+K2P
+  # Note: K2P-only and D2K+K2P only work with pancreatic cancer guidelines
+  pipeline_mode: "D2K-only"  # Options: D2K-only, K2P-only, D2K+K2P
+
+input_files:
+  problem_text: "src/input_files/input_guidelines/lung_cancer_guidelines.txt"
+
+  # D2K-Pipeline
+  constant_prompt: "src/input_files/D2K/constant_prompt.txt"
+  predicate_prompt: "src/input_files/D2K/predicate_prompt.txt"
+  rule_generation_prompt: "src/input_files/D2K/rule_generation_prompt.txt"
+
+  # In-Context
+  in_context_prompt: "src/input_files/D2K/in_context.txt"
+
+  # No-Pipeline
+  zero_shot_prompt: "src/input_files/D2K/zero_shot.txt"
+
+  # Ground Truth
+  ground_truth: "src/input_files/ground_truths/GT_LC.lp"
+

@@ -1,0 +1,201 @@
+Looking at this clinical guideline text about lung cancer diagnosis and staging, I'll extract the ASP rules following the pattern from the examples.
+
+[1.3.1]
+use("sputum cytology") :- have("lung cancer"), have("centrally placed nodules"), decline("bronchoscopy").
+use("sputum cytology") :- have("lung cancer"), have("masses"), decline("bronchoscopy").
+use("sputum cytology") :- have("lung cancer"), have("centrally placed nodules"), cannot_tolerate("bronchoscopy").
+use("sputum cytology") :- have("lung cancer"), have("masses"), cannot_tolerate("bronchoscopy").
+
+[1.3.2]
+offer("contrast-enhanced chest CT") :- have("lung cancer").
+
+[1.3.3]
+consider("ultrasound") :- assess("mediastinal"), assess("chest wall").
+
+[1.3.4]
+offer("PET-CT") :- have("lung cancer"), treatment("treatment with curative intent").
+
+[1.3.6]
+:- use("MRI"), assess("NSCLC").
+
+[1.3.7]
+use("MRI") :- have("superior sulcus tumours"), assess("superior sulcus tumours").
+
+[1.3.8]
+offer("EBUS-TBNA") :- biopsy("paratracheal and peri-bronchial intra-parenchymal lung lesions").
+
+[1.3.13]
+perform("contrast-enhanced chest CT") :- perform("biopsy").
+
+[1.3.15]
+offer("image-guided biopsy") :- have("peripheral lung lesions").
+
+[1.3.16]
+biopsy("enlarged intrathoracic nodes") :- enlarged("intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+
+[1.3.17]
+offer("flexible bronchoscopy") :- have("central lesions").
+
+[1.3.18]
+offer("PET-CT") :- have("lung cancer"), have("intrathoracic lymph nodes"), treatment("treatment with curative intent").
+
+[1.3.19]
+offer("PET-CT") :- have("lung cancer"), enlarged("intrathoracic lymph nodes"), treatment("treatment with curative intent").
+offer("EBUS-TBNA") :- have("lung cancer"), enlarged("intrathoracic lymph nodes"), treatment("treatment with curative intent"), offered("PET-CT").
+offer("EUS-FNA") :- have("lung cancer"), enlarged("intrathoracic lymph nodes"), treatment("treatment with curative intent"), offered("PET-CT").
+
+[1.3.20]
+use("EBUS-TBNA") :- suspicious("intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+use("EUS-FNA") :- suspicious("intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+
+[1.3.21]
+consider("surgical mediastinal staging") :- negative("EBUS-TBNA"), high_suspicion("intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+consider("surgical mediastinal staging") :- negative("EUS-FNA"), high_suspicion("intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+
+[1.3.22]
+biopsy("isolated distant metastases") :- have("isolated distant metastases"), treatment("treatment with curative intent").
+biopsy("synchronous tumours") :- have("synchronous tumours"), treatment("treatment with curative intent").
+
+[1.3.23]
+:- offer("MRI"), have("NSCLC"), not have("neurological symptoms"), treatment("treatment with curative intent").
+
+[1.3.24]
+offer("contrast-enhanced brain CT") :- have("NSCLC"), treatment("treatment with curative intent").
+offer("contrast-enhanced brain MRI") :- have("NSCLC"), treatment("treatment with curative intent"), show("contrast-enhanced brain CT", "brain metastases").
+
+[1.3.25]
+offer("contrast-enhanced brain MRI") :- have("NSCLC"), treatment("treatment with curative intent").
+
+[1.3.26]
+offer("contrast-enhanced brain CT") :- have("intracranial pathology").
+offer("contrast-enhanced brain MRI") :- have("intracranial pathology"), offered("contrast-enhanced brain CT").
+offer("contrast-enhanced brain MRI") :- have("intracranial pathology").
+
+[1.3.27]
+perform("X-ray") :- have("bone metastasis").
+offer("bone scintigraphy") :- have("bone metastasis"), negative("X-ray").
+offer("MRI") :- have("bone metastasis"), negative("X-ray").
+
+[1.3.28]
+:- use("bone scintigraphy"), not show("PET-CT", "bone metastases").
+
+[1.3.30]
+refer("lung cancer multidisciplinary team", "lung cancer") :- have("lung cancer").
+
+[1.1.1]
+refer("suspected cancer pathway referral", "lung cancer") :- suggest("chest X-ray findings that suggest lung cancer", "lung cancer").
+refer("suspected cancer pathway referral", "lung cancer") :- age(X), X>=40, have("haemoptysis").
+
+[1.1.2]
+offer("chest X-ray") :- age(X), X>=40, 2{have("cough"); have("fatigue"); have("shortness of breath"); have("chest pain"); have("weight loss"); have("appetite loss")}6.
+offer("chest X-ray") :- age(X), X>=40, have("ever smoked"), 1{have("cough"); have("fatigue"); have("shortness of breath"); have("chest pain"); have("weight loss"); have("appetite loss")}6.
+
+[1.1.3]
+consider("chest X-ray") :- age(X), X>=40, have("chest infection").
+consider("chest X-ray") :- age(X), X>=40, have("finger clubbing").
+consider("chest X-ray") :- age(X), X>=40, have("supraclavicular lymphadenopathy").
+consider("chest X-ray") :- age(X), X>=40, have("cervical lymphadenopathy").
+consider("chest X-ray") :- age(X), X>=40, have("chest signs consistent with lung cancer").
+consider("chest X-ray") :- age(X), X>=40, have("thrombocytosis").Looking at this clinical guideline text about lung cancer diagnosis and staging, I'll extract the ASP rules following the pattern from the examples.
+
+[1.3.1]
+use("sputum cytology") :- have("lung cancer"), have("centrally placed nodules"), decline("bronchoscopy").
+use("sputum cytology") :- have("lung cancer"), have("masses"), decline("bronchoscopy").
+use("sputum cytology") :- have("lung cancer"), have("centrally placed nodules"), cannot_tolerate("bronchoscopy").
+use("sputum cytology") :- have("lung cancer"), have("masses"), cannot_tolerate("bronchoscopy").
+
+[1.3.2]
+offer("contrast-enhanced chest CT") :- have("lung cancer").
+
+[1.3.3]
+consider("ultrasound") :- assess("mediastinal"), assess("chest wall").
+
+[1.3.4]
+offer("PET-CT") :- have("lung cancer"), treatment("treatment with curative intent").
+
+[1.3.6]
+:- use("MRI"), assess("NSCLC").
+
+[1.3.7]
+use("MRI") :- have("superior sulcus tumours"), assess("superior sulcus tumours").
+
+[1.3.8]
+offer("EBUS-TBNA") :- biopsy("paratracheal and peri-bronchial intra-parenchymal lung lesions").
+
+[1.3.11]
+perform("biopsy") :- need("treatment with curative intent").
+
+[1.3.14]
+perform("contrast-enhanced chest CT") :- perform("biopsy").
+
+[1.3.15]
+offer("image-guided biopsy") :- have("peripheral lung lesions"), treatment("treatment with curative intent").
+
+[1.3.16]
+biopsy("enlarged intrathoracic nodes") :- enlarged("intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+
+[1.3.17]
+offer("flexible bronchoscopy") :- have("central lesions"), not affect("intrathoracic lymph nodes", "treatment with curative intent").
+
+[1.3.18]
+offer("PET-CT") :- have("lung cancer"), have("intrathoracic lymph nodes"), treatment("treatment with curative intent").
+
+[1.3.19]
+offer("PET-CT") :- have("lung cancer"), enlarged("intrathoracic lymph nodes"), treatment("treatment with curative intent").
+1{offer("EBUS-TBNA"); offer("EUS-FNA")}2 :- have("lung cancer"), enlarged("intrathoracic lymph nodes"), treatment("treatment with curative intent"), offered("PET-CT").
+
+[1.3.20]
+1{use("EBUS-TBNA"); use("EUS-FNA")}2 :- enlarged("intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+1{use("EBUS-TBNA"); use("EUS-FNA")}2 :- findings("PET-CT", "intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+
+[1.3.21]
+consider("surgical mediastinal staging") :- negative("EBUS-TBNA"), high_suspicion("intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+consider("surgical mediastinal staging") :- negative("EUS-FNA"), high_suspicion("intrathoracic lymph nodes"), affect("intrathoracic lymph nodes", "treatment with curative intent").
+
+[1.3.22]
+biopsy("isolated distant metastases") :- have("isolated distant metastases"), treatment("treatment with curative intent").
+biopsy("synchronous tumours") :- have("synchronous tumours"), treatment("treatment with curative intent").
+
+[1.3.23]
+:- offer("MRI"), have("NSCLC"), not have("neurological symptoms"), treatment("treatment with curative intent").
+
+[1.3.24]
+offer("contrast-enhanced brain CT") :- have("NSCLC"), treatment("treatment with curative intent").
+offer("contrast-enhanced brain MRI") :- have("NSCLC"), treatment("treatment with curative intent"), show("contrast-enhanced brain CT", "brain metastases").
+
+[1.3.25]
+offer("contrast-enhanced brain MRI") :- have("NSCLC"), treatment("treatment with curative intent").
+
+[1.3.26]
+offer("contrast-enhanced brain CT") :- have("intracranial pathology").
+offer("contrast-enhanced brain MRI") :- have("intracranial pathology"), offered("contrast-enhanced brain CT"), not show("contrast-enhanced brain CT", "intracranial pathology").
+offer("contrast-enhanced brain MRI") :- have("intracranial pathology").
+
+[1.3.27]
+perform("X-ray") :- have("bone metastasis").
+1{offer("bone scintigraphy"); offer("MRI")}1 :- have("bone metastasis"), negative("X-ray").
+
+[1.3.28]
+:- use("bone scintigraphy"), not show("PET-CT", "bone metastasis").
+
+[1.3.30]
+refer("lung cancer multidisciplinary team", "lung cancer") :- have("lung cancer").
+
+[1.3.32]
+offer("fast-track lung cancer clinics") :- have("lung cancer").
+
+[1.1.1]
+refer("suspected cancer pathway referral", "lung cancer") :- suggest("chest X-ray findings that suggest lung cancer", "lung cancer").
+refer("suspected cancer pathway referral", "lung cancer") :- age(X), X>=40, have("haemoptysis").
+
+[1.1.2]
+offer("chest X-ray", "urgent") :- age(X), X>=40, 2{have("cough"); have("fatigue"); have("shortness of breath"); have("chest pain"); have("weight loss"); have("appetite loss")}6.
+offer("chest X-ray", "urgent") :- age(X), X>=40, have("ever smoked"), 1{have("cough"); have("fatigue"); have("shortness of breath"); have("chest pain"); have("weight loss"); have("appetite loss")}6.
+
+[1.1.3]
+consider("chest X-ray", "urgent") :- age(X), X>=40, have("chest infection").
+consider("chest X-ray", "urgent") :- age(X), X>=40, have("finger clubbing").
+consider("chest X-ray", "urgent") :- age(X), X>=40, have("supraclavicular lymphadenopathy").
+consider("chest X-ray", "urgent") :- age(X), X>=40, have("cervical lymphadenopathy").
+consider("chest X-ray", "urgent") :- age(X), X>=40, have("chest signs consistent with lung cancer").
+consider("chest X-ray", "urgent") :- age(X), X>=40, have("thrombocytosis").
