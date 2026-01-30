@@ -343,10 +343,9 @@ NICE2ASP2/
 │   │   └── K2P/                           # Patient vignettes
 │   ├── output_files/                      # Generated results
 │   │   ├── CLAUDE/
-│   │   │   ├── reviews/                   # Evaluation metrics
-│   │   │   ├── lung cancer/               # Lung cancer outputs
-│   │   │   └── pancreatic cancer/         # Pancreatic cancer outputs
-│   │   └── GPT/
+│   │       ├── reviews/                   # Evaluation metrics
+│   │       ├── lung cancer/               # Lung cancer outputs
+│   │       └── pancreatic cancer/         # Pancreatic cancer outputs
 │   ├── processing/                        # Core processing modules
 │   │   ├── LLM_Inferencer.py              # LLM API wrapper
 │   │   ├── FileManager.py                 # File I/O utilities
