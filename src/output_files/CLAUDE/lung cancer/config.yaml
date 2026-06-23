@@ -19,6 +19,3 @@ input_files:
   zero_shot_prompt: "src/input_files/prompt_files/PC/zero_shot.txt"
   in_context_prompt: "src/input_files/prompt_files/PC/in_context_PC.txt"
 
-
-# Models
-  # model: "gpt-5.1-2025-11-13"

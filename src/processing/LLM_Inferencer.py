@@ -10,13 +10,7 @@ class LLMInferencer:
         self.family = family
         if self.family == "claude":
             self.client = Anthropic(api_key=API_KEYS['ANTHROPIC_API_KEY'])
-        
-        # elif self.family == 'gpt':
-        #     self.client = OpenAI(api_key=API_KEYS['OPENAI_API_KEY'])
-        # elif self.family == 'deepseek':
-        #     self.client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=API_KEYS['OPENROUTER_API_KEY'])
-        # elif self.family == 'groq':
-        #     self.client = Groq(api_key=API_KEYS['GROQ_API_KEY'])
+
 
     
     def _load_file(self, filename) -> str:

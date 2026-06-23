@@ -5,8 +5,6 @@ from pathlib import Path
 from src.processing.LLM_Inferencer import LLMInferencer
 from src.processing.FileManager import FileManager
 from src.processing.RuleProcessor import RuleProcessor
-from src.processing.graph_analysis import GraphAnalyzer
-from src.processing.graph_utils import ASPGraphCreator
 from src.processing.review_K2P import K2PReviewer
 from src.processing.pipeline_utils import (
     load_config, 
@@ -84,9 +82,6 @@ def main(config_path):
                 str(output_files['predicate_response']),
                 str(output_files['rulegen_response']),
             )
-
-            graph_generated = ASPGraphCreator.create_program_graph(str(output_files['rulegen_response']))
-            pass
         elif config['experiment']['version'] == 'In-Context':
             print("Running in context inference")
             llmExtractor.run_constant_inference(
@@ -94,8 +89,6 @@ def main(config_path):
                 config['input_files']['problem_text'],
                 str(output_files['in_context_response'])
             )
-            graph_generated = ASPGraphCreator.create_program_graph(str(output_files['in_context_response']))
-            pass
         elif config['experiment']['version'] == 'No-Pipeline':
             print("Running zero shot inference")
             llmExtractor.run_constant_inference(
@@ -103,39 +96,9 @@ def main(config_path):
                 config['input_files']['problem_text'],
                 str(output_files['zero_shot_response'])
             )
-            graph_generated = ASPGraphCreator.create_program_graph(str(output_files['zero_shot_response']))
-            pass
         else:
             print("Invalid experiment version")
             return
-
-        # ------------------------------------------------------------
-        # Graphical Analysis (only for D2K modes)
-        # ------------------------------------------------------------
-        graph_gt = ASPGraphCreator.create_program_graph(config['input_files']['ground_truth'])
-
-        if config['experiment']['version'] == 'D2K-Pipeline':
-            graph_file = str(output_files['rulegen_response'])
-            graph_name = 'rulegen_response'
-        elif config['experiment']['version'] == 'No-Pipeline':
-            graph_file = str(output_files['zero_shot_response'])
-            graph_name = 'zero_shot_response'
-        elif config['experiment']['version'] == 'In-Context':
-            graph_file = str(output_files['in_context_response'])
-            graph_name = 'in_context_response'
-        else:
-            print(f"Unknown experiment version: {config['experiment']['version']}")
-            return
-
-        graph_generated = ASPGraphCreator.create_program_graph(graph_file)
-        graph_analyzer = GraphAnalyzer()
-        graph_analyzer.calculate_graph_similarity(
-            graph_gt, 
-            [graph_generated], 
-            str(output_files['graph_metrics']), 
-            [graph_name],
-            config=config
-        )
 
     # ------------------------------------------------------------
     # K2P Analysis (Knowledge to Prediction)
