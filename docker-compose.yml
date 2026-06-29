@@ -1,0 +1,14 @@
+services:
+  lung-cancer:
+    build: .
+    env_file: .env
+    volumes:
+      - ./src/output_files:/app/src/output_files
+    command: python main.py --config src/configs/lung_cancer_config.yaml
+
+  pancreatic-cancer:
+    build: .
+    env_file: .env
+    volumes:
+      - ./src/output_files:/app/src/output_files
+    command: python main.py --config src/configs/pancreatic_cancer_config.yaml

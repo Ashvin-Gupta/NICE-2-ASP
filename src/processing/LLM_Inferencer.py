@@ -3,11 +3,10 @@ from anthropic import Anthropic
 from src.resources.API_KEYS import API_KEYS
 
 class LLMInferencer:
-    def __init__(self, model, temperature, family, seed=42) -> None:
+    def __init__(self, model, temperature, family) -> None:
 
         self.model = model
         self.temperature = temperature
-        self.seed = seed
         self.family = family
         if self.family == "claude":
             self.client = Anthropic(api_key=API_KEYS['ANTHROPIC_API_KEY'])
@@ -111,20 +110,7 @@ class LLMInferencer:
                         # Fallback if the block doesn't have a text attribute
                         full_response += str(block)
         else:
-            chat_completion = self.client.chat.completions.create(
-                model = self.model,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    }
-                    
-                ],
-                temperature = self.temperature,
-                seed = self.seed,
-                
-            )
-            full_response = chat_completion.choices[0].message.content
+            raise ValueError(f"Unsupported model family: '{self.family}'. Only 'claude' is supported.")
 
         self._save_reply(full_response, output_file)
 
