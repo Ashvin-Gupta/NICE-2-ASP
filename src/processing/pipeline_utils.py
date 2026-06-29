@@ -46,7 +46,6 @@ def setup_experiment_dir(config, config_path):
     - in-context subdirectory (for in-context baseline)
     - zero-shot subdirectory (for zero-shot baseline)
     - K2P subdirectory (for K2P pipeline outputs)
-    - reviews/structural review D2K (for graph metrics)
     
     Args:
         config: Configuration dictionary
@@ -100,9 +99,7 @@ def setup_output_files(exp_dir, d2k_dir, in_context_dir, zero_shot_dir, k2p_dir,
     base_output_dir = Path(config['experiment']['output_dir'])
     
     # Create reviews directory structure for metrics
-    structural_review_dir = base_output_dir / 'reviews' / 'structural review D2K'
     k2p_review_dir = base_output_dir / 'reviews' / 'K2P review'
-    structural_review_dir.mkdir(parents=True, exist_ok=True)
     k2p_review_dir.mkdir(parents=True, exist_ok=True)
     
     output_files = {
@@ -122,7 +119,6 @@ def setup_output_files(exp_dir, d2k_dir, in_context_dir, zero_shot_dir, k2p_dir,
         'zero_shot_response': zero_shot_dir / 'zero_shot_response.txt',
 
         # Review metrics (in reviews subdirectories)
-        'graph_metrics': structural_review_dir / f'{cancer_type}_graph_metrics.csv',
         'k2p_metrics': k2p_review_dir / f'{cancer_type}_K2P_review.csv',
         
         # Input files

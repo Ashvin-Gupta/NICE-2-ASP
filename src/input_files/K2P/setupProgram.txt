@@ -10,6 +10,7 @@ Given:
 Return: 
 The elements in the body of the rules that are required for rules to fire in the program for that specific patient.
 Make sure that everything in the patient description is presented properly from the elements that appear in the body of the rules.
+Do not include have("pancreatic cancer") or any atom with offered as we are trying to figure these facts out.
 
 Here are two examples:
 Example 1:

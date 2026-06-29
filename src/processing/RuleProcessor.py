@@ -159,8 +159,8 @@ class RuleProcessor:
         while i < len(lines):
             line = lines[i].strip()
             
-            # Check for rule number marker [X.X.X]
-            rule_match = re.match(r'\[([\d.]+)\]', line)
+            # Check for rule number marker [X.X.X] — may be prefixed with "% " in LLM output
+            rule_match = re.search(r'\[([\d.]+)\]', line)
             if rule_match:
                 current_rule_number = rule_match.group(1)
                 # Reset counter for this rule number
@@ -236,7 +236,7 @@ class RuleProcessor:
         self.file_manager.save_file(output_content, output_path)
         
         print(f"Processed {len(self.rule_registry)} rules")
-        print(f"Output written to {output_path}")
+        # print(f"Output written to {output_path}")
     
     def _extract_body(self, rule_line: str) -> str:
         """
@@ -324,7 +324,6 @@ class RuleProcessor:
                         rule_text = rule_map[rule_id]
 
                         constraint_body = self.constraint_rules.get(rule_id)
-                        print(f"Constraint body: {constraint_body}")
                         if constraint_body:
                             explanations.append("NICE2ASP:\n")
                             explanations.append(f"Rule {rule_id}\n")
@@ -354,7 +353,7 @@ class RuleProcessor:
         
         explanation_text = ''.join(explanations)
         self.file_manager.save_file(explanation_text, explanation_path)
-        print(f"Explanations written to {explanation_path}")
+        # print(f"Explanations written to {explanation_path}")
 
     def _build_rule_map_from_lp(self, lp_content: str) -> dict:
         """
@@ -495,7 +494,7 @@ class RuleProcessor:
         
         # Process each patient
         for patient_id, section in patient_data:
-            print(f"Processing Patient {patient_id}...")
+            # print(f"Processing Patient {patient_id}...")
             
             # Extract facts from the section
             facts = []
@@ -541,7 +540,7 @@ class RuleProcessor:
                 
                 # Print summary
                 fired_count = result.stdout.count('fired(')
-                print(f"Patient {patient_id}: {fired_count} rules fired")
+                # print(f"Patient {patient_id}: {fired_count} rules fired")
                 
             except Exception as e:
                 # Handle errors

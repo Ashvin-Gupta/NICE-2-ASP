@@ -7,11 +7,12 @@ Task Plan
 4. Express each as an ASP rule following the pattern used in the examples (Problems 1–6).
 5. For negated recommendations (“Do not offer...”), produce constraints (:- ...).
 6. Preserve temporal or conditional sequencing using offered(X) when a later action depends on a previous offer.
-7. Output all resulting rules grouped by their guideline reference number, using the format:
+7. Output all resulting rules grouped by their guideline reference number, exactly using the format:
     [rule_number]
     rule1.
     rule2.
     ...
+Meaning that there is no other text such as explanations, only the rule number in square brackets followed by the rules.
 
 Background knowledge:
 1. offered(X) :- offer(X).

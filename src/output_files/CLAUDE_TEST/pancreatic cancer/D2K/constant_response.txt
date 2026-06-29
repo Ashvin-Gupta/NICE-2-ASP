@@ -1,0 +1,12 @@
+Constants:
+Disease: "pancreatic cancer", "colorectal", "gastro-oesophageal", "lung", "prostate", "urological cancer", "oesophageal", "stomach", "bladder", "renal cancer".
+Symptoms: "obstructive jaundice", "jaundice", "weight loss", "unexplained weight loss", "unexplained appetite loss", "diarrhoea", "back pain", "abdominal pain", "nausea", "vomiting", "constipation", "new-onset diabetes", "pancreatic cysts".
+Imaging: "pancreatic protocol CT", "CT", "MRI", "MRI/MRCP", "magnetic resonance cholangiopancreatography", "ultrasound".
+Procedures: "FDG-PET/CT", "fluorodeoxyglucose-positron emission tomography/CT", "EUS", "endoscopic ultrasound", "EUS-guided tissue sampling", "biliary brushing for cytology", "ERCP", "endoscopic retrograde cholangiopancreatography", "biopsy", "fine-needle aspiration", "CEA assay", "carcinoembryonic antigen", "cytology", "laparoscopy with laparoscopic ultrasound", "laparoscopic ultrasound".
+Finding_of_pancreas: "pancreatic abnormalities", "cystic lesions in the head of the pancreas", "enhancing solid component in the cyst", "main pancreatic duct that is 10 mm diameter or larger", "localised disease", "liver metastases", "peritoneal", "tumour and node staging".
+Genetic_disease: "hereditary pancreatitis", "PRSS1", "BRCA1", "BRCA2", "PALB2", "CDKN2A (p16)", "Peutz–Jeghers syndrome", "Lynch syndrome", "MLH1", "MSH2", "MSH6", "PMS2", "mismatch repair gene".
+Management: "surveillance", "suspected cancer pathway referral", "resection", "draining the bile duct", "relieve the biliary obstruction", "staging", "resectional surgery", "urgent investigation", "clinical management".
+Treatments: "surgery", "radiotherapy", "systemic therapy", "cancer treatment".
+Anatomical_structures: "bile duct", "chest", "abdomen", "pelvis", "liver", "head of the pancreas".
+Information_about_patient: "adults aged 18 and over", "18", "first-degree relatives", "40", "60", "inherited high risk", "2 or more first-degree relatives", "2 or more generations".
+General_findings: "unclear diagnosis", "more information", "more information on the likelihood of malignancy", "no tissue diagnosis", "urgent", "newly diagnosed".

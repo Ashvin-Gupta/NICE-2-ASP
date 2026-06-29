@@ -44,7 +44,7 @@ def main(config_path):
     # Process prompt templates with cancer-type-specific organ terms
     temp_dir = tempfile.mkdtemp(prefix='nice2asp_prompts_')
     processed_prompts = setup_processed_prompts(config, temp_dir)
-    print(f"Processed prompts created in: {temp_dir}")
+    print(f"Processed prompts created in: {temp_dir}\n")
 
     llmExtractor = LLMInferencer(config['experiment']['model'], config['experiment']['temperature'], config['experiment']['family'])
     fileManager = FileManager()
@@ -65,6 +65,7 @@ def main(config_path):
                 config['input_files']['problem_text'],
                 str(output_files['constant_response']),
             )
+            print(f"Constants extracted and saved to: {output_files['constant_response']}\n")
 
             # Extracting the predicates (using processed prompt)
             llmExtractor.run_predicate_inference(
@@ -73,7 +74,7 @@ def main(config_path):
                 str(output_files['constant_response']),
                 str(output_files['predicate_response']),
             )
-
+            print(f"Predicates extracted and saved to: {output_files['predicate_response']}\n")
             # Rule generation (using processed prompt)
             llmExtractor.run_rulegen_inference(
                 processed_prompts['rule_generation_prompt'],
@@ -82,6 +83,7 @@ def main(config_path):
                 str(output_files['predicate_response']),
                 str(output_files['rulegen_response']),
             )
+            print(f"Rules extracted and saved to: {output_files['rulegen_response']}\n")
         elif config['experiment']['version'] == 'In-Context':
             print("Running in context inference")
             llmExtractor.run_constant_inference(
@@ -89,6 +91,7 @@ def main(config_path):
                 config['input_files']['problem_text'],
                 str(output_files['in_context_response'])
             )
+            print(f"In-context rules extracted and saved to: {output_files['in_context_response']}\n")
         elif config['experiment']['version'] == 'No-Pipeline':
             print("Running zero shot inference")
             llmExtractor.run_constant_inference(
@@ -96,6 +99,7 @@ def main(config_path):
                 config['input_files']['problem_text'],
                 str(output_files['zero_shot_response'])
             )
+            print(f"Zero shot rules extracted and saved to: {output_files['zero_shot_response']}\n")
         else:
             print("Invalid experiment version")
             return
@@ -106,7 +110,7 @@ def main(config_path):
     # ------------------------------------------------------------
     
     if pipeline_mode in ['K2P-only', 'D2K+K2P']:
-        print("Starting K2P Analysis")
+        print("\n\nStarting K2P Analysis")
         
         # For K2P-only mode, we need to use a pre-existing rulegen_response file
         if pipeline_mode == 'K2P-only':

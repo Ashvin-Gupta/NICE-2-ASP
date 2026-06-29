@@ -1,3 +1,4 @@
+import re
 from anthropic import Anthropic
 from src.resources.API_KEYS import API_KEYS
 
@@ -52,7 +53,7 @@ class LLMInferencer:
         # Run the prompt and extract the rules
         # Relies on the predicates and constants already being found
         
-        print("Extracting the rules part 1")
+        print("Extracting the rules")
         prompt_template = self._load_file(prompt_template)
         problem_text = self._load_file(problem_text)
         processed_constants = self._load_file(processed_constants)
@@ -79,6 +80,11 @@ class LLMInferencer:
 
 
 
+    def _supports_temperature(self) -> bool:
+        # Old-style names (e.g. claude-3-7-sonnet-20250219) start with "claude-<digit>"
+        # New-style names (e.g. claude-sonnet-4-6) start with "claude-<word>" and have dropped temperature support
+        return bool(re.match(r'claude-\d', self.model))
+
     def _callAPI(self, prompt:str, output_file:str) -> None:
         # encoding = tiktoken.encoding_for_model(self.model)
         # num_tokens = len(encoding.encode(prompt))
@@ -86,17 +92,14 @@ class LLMInferencer:
         
 
         if self.family == "claude":
-            chat_completion = self.client.messages.create(
-                model = self.model,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    }
-                ],
-                temperature = self.temperature,
-                max_tokens = 20000 if self.model == 'claude-3-7-sonnet-20250219' else 4096
+            kwargs = dict(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=16000,
             )
+            if self._supports_temperature():
+                kwargs["temperature"] = self.temperature
+            chat_completion = self.client.messages.create(**kwargs)
             if hasattr(chat_completion, 'content') and isinstance(chat_completion.content, list):
         
                 # Extract text from TextBlock objects
