@@ -19,8 +19,8 @@ Supports two cancer types: **Lung Cancer** and **Pancreatic Cancer**.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Ashvin-Gupta/NICE2ASP2.git
-   cd NICE2ASP2
+   git clone https://github.com/Ashvin-Gupta/NICE-2-ASP.git
+   cd NICE-2-ASP
    ```
 
 2. Copy the environment template and add your API key:
@@ -43,7 +43,7 @@ Supports two cancer types: **Lung Cancer** and **Pancreatic Cancer**.
    docker compose run pancreatic-cancer
    ```
 
-Results are saved to `src/output_files/` on your machine.
+Results are saved to `src/output_files/` on your machine. If you want to change the settings in the config file be sure to build the project again before running.
 
 ---
 
@@ -51,8 +51,8 @@ Results are saved to `src/output_files/` on your machine.
 
 1. Clone and enter the repository:
    ```bash
-   git clone https://github.com/Ashvin-Gupta/NICE2ASP2.git
-   cd NICE2ASP2
+   git clone https://github.com/Ashvin-Gupta/NICE-2-ASP.git
+   cd NICE-2-ASP
    ```
 
 2. Create and activate a virtual environment:

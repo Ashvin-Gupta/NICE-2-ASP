@@ -23,8 +23,9 @@ Background knowledge:
 4. The symbol :- at the start of the line denotes a constraint (e.g anything atoms in the body cannot be exist together).
 5. Use the constants and predicates provided — do not invent new ones.
 6. The rules must be ASP valid. One condition is that the rules must be grounded, meaning if a variable appears in the head, it must also appear in a postive, non-built-in predicate in the body. If it appears in quatation marks it is fine.
-    e.g offer(P) :- body1, procedure(P) is correct. The procedure(P) is needed otherwise it is not grounded.
+    e.g offer(P) :- body1, procedure(P) is correct. The procedure(P) is needed otherwise it is not grounded as P is a variable.
     offer("ct scan") :- have("pain") is also correct.
+    first_degree_relative("pancreatic cancer", _) :- have("pancreatic cancer") will throw an error as as cannot use a variable (in this case '-') in the head without grounding it.
 
 Reasoning Pattern
 1. Identify who the rule applies to (conditions → body).

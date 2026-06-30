@@ -117,9 +117,7 @@ class LLMInferencer:
      
     
     def _save_reply(self, reply:str, output_file:str) -> None:
-        # Appends the LLM's reply to the output file
-        
-        with open(output_file, 'a', encoding='utf-8') as f:
+        with open(output_file, 'w', encoding='utf-8') as f:
             f.write(reply)
           
           
