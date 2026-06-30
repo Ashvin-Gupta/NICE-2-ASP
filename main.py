@@ -33,7 +33,11 @@ def main(config_path):
     if not validate_pipeline_mode(pipeline_mode, cancer_type):
         return
     
-    print(f'Running Pipeline in {pipeline_mode} mode for {cancer_type}!')
+    print("=" * 60)
+    print(" NICE2ASP Pipeline Launch")
+    print(f" Mode: {pipeline_mode} | Cancer Type: {cancer_type}")
+    print("=" * 60)
+    print('\n')
     
     # Setup directories
     exp_dir, d2k_dir, in_context_dir, zero_shot_dir, k2p_dir = setup_experiment_dir(config, config_path)
@@ -46,7 +50,7 @@ def main(config_path):
     processed_prompts = setup_processed_prompts(config, temp_dir)
     print(f"Processed prompts created in: {temp_dir}\n")
 
-    llmExtractor = LLMInferencer(config['experiment']['model'], config['experiment']['temperature'], config['experiment']['family'])
+    llmExtractor = LLMInferencer(config['experiment']['model'], config['experiment']['temperature'])
     fileManager = FileManager()
 
     # Get pipeline mode
@@ -110,7 +114,10 @@ def main(config_path):
     # ------------------------------------------------------------
     
     if pipeline_mode in ['K2P-only', 'D2K+K2P']:
-        print("\n\nStarting K2P Analysis")
+        print("=" * 60)
+        print(" Starting K2P Analysis")
+        print("=" * 60)
+        print('\n')
         
         # For K2P-only mode, we need to use a pre-existing rulegen_response file
         if pipeline_mode == 'K2P-only':

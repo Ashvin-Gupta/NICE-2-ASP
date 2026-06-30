@@ -12,7 +12,6 @@ YAML configuration files that control pipeline execution.
 | Parameter | Description | Example values |
 |---|---|---|
 | `model` | Claude model ID | `claude-sonnet-4-6`, `claude-opus-4-8` |
-| `family` | Model provider | `claude` |
 | `temperature` | Sampling temperature | `0.0` (deterministic) |
 | `version` | Prompting strategy | `D2K-Pipeline`, `In-Context`, `No-Pipeline` |
 | `pipeline_mode` | Which stages to run | `D2K-only`, `K2P-only`, `D2K+K2P` |

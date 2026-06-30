@@ -9,7 +9,7 @@ Supports two cancer types: **Lung Cancer** and **Pancreatic Cancer**.
 ## Prerequisites
 
 - An [Anthropic API key](https://console.anthropic.com/)
-- Either **Docker** (recommended) or **Python 3.12+**
+- Either [Docker](https://docs.docker.com/get-started/get-docker/) or **Python 3.12+**
 
 ---
 

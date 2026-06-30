@@ -2,7 +2,6 @@ experiment:
   name: "lung_cancer_guidelines"
   output_dir: "src/output_files/CLAUDE"
   model: "claude-sonnet-4-6"
-  family: "claude"
   temperature: 0.0
   version: D2K-Pipeline # No-Pipeline, In-Context, D2K-Pipeline
   cancer_type: "lung cancer"

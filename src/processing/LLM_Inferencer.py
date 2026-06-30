@@ -3,13 +3,11 @@ from anthropic import Anthropic
 from src.resources.API_KEYS import API_KEYS
 
 class LLMInferencer:
-    def __init__(self, model, temperature, family) -> None:
+    def __init__(self, model, temperature) -> None:
 
         self.model = model
         self.temperature = temperature
-        self.family = family
-        if self.family == "claude":
-            self.client = Anthropic(api_key=API_KEYS['ANTHROPIC_API_KEY'])
+        self.client = Anthropic(api_key=API_KEYS['ANTHROPIC_API_KEY'])
 
 
     
@@ -90,27 +88,21 @@ class LLMInferencer:
         # print(f'Number of tokens: {num_tokens}')
         
 
-        if self.family == "claude":
-            kwargs = dict(
-                model=self.model,
-                messages=[{"role": "user", "content": prompt}],
-                max_tokens=16000,
-            )
-            if self._supports_temperature():
-                kwargs["temperature"] = self.temperature
-            chat_completion = self.client.messages.create(**kwargs)
-            if hasattr(chat_completion, 'content') and isinstance(chat_completion.content, list):
-        
-                # Extract text from TextBlock objects
-                full_response = ""
-                for block in chat_completion.content:
-                    if hasattr(block, 'text'):
-                        full_response += block.text
-                    else:
-                        # Fallback if the block doesn't have a text attribute
-                        full_response += str(block)
-        else:
-            raise ValueError(f"Unsupported model family: '{self.family}'. Only 'claude' is supported.")
+        kwargs = dict(
+            model=self.model,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=16000,
+        )
+        if self._supports_temperature():
+            kwargs["temperature"] = self.temperature
+        chat_completion = self.client.messages.create(**kwargs)
+        full_response = ""
+        if hasattr(chat_completion, 'content') and isinstance(chat_completion.content, list):
+            for block in chat_completion.content:
+                if hasattr(block, 'text'):
+                    full_response += block.text
+                else:
+                    full_response += str(block)
 
         self._save_reply(full_response, output_file)
 
