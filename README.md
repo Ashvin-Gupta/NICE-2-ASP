@@ -2,7 +2,7 @@
 
 A pipeline that translates NICE cancer clinical guidelines into Answer Set Programming (ASP) rules using the Claude API, then applies those rules to patient vignettes to generate clinical recommendations.
 
-Supports two cancer types: **Lung Cancer** and **Pancreatic Cancer**.
+Demonstrated on two cancer types: [Pancreatic Cancer](https://www.nice.org.uk/guidance/ng85) and [Lung Cancer](https://www.nice.org.uk/guidance/ng122) but in theory can be extended to any of the NICE guidelines which focus on diagnosis.
 
 ---
 
